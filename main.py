@@ -48,7 +48,7 @@ async def submit(ctx):
 async def quote(ctx):
     # Check if empty
     if not quotes:
-        await ctx.send("# No quotes have been submitted yet :(\n__You can do that with **.submit [creative quote here]**__")
+        await ctx.send("# No quotes have been submitted yet :frowning:\n__You can do that with **.submit [creative quote here]**__")
     # Find random quote and create a embed
     else:
         chosen = random.choice(quotes)
