@@ -8,16 +8,19 @@ from quote import Quote
 
 # Set some global variables
 quotes = []
+command_prefix = '.'
 description = '''
-Howdy my name is **Motiovotionabot**
+Howdy, my name is **Motiovotionabot**
 *Quote bot made and hosted by Evan Kim v0.1*
+[Github Repo](https://github.com/Evanston09/motiovotionabot/)
 '''
-token = open("token.txt", "r")
+with open("token.txt", "r") as token_file:
+    token = token_file.read().strip()
 
 # Sets up intents and the bot
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='.', intents=intents, description=description)
+bot = commands.Bot(command_prefix=command_prefix, intents=intents, description=description)
 
 # Define description
 @bot.command()
@@ -57,4 +60,4 @@ async def quote(ctx):
         await ctx.send(embed=embed)
 
 # Run bot keep token a secret
-bot.run(token.read())
+bot.run(token)
