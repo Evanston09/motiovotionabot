@@ -1,6 +1,7 @@
 # Import required modules
 import discord
 from discord.ext import commands
+import os
 import random
 import csv
 
@@ -20,11 +21,15 @@ def store(csv_file_path, body, author):
         writer = csv.writer(csvfile)
         writer.writerow([body, author])
 
+# Check if non-existent or empty
 def is_file_empty(csv_file_path):
+    if not os.path.exists(csv_file_path):
+        return True
     with open(csv_file_path, "r") as csvfile:
         csv_reader = csv.reader(csvfile)
         return not any(csv_reader)
 
+# Pick random quote out of CSV
 def pick_random(csv_file_path):
     with open(csv_file_path, "r") as csvfile:
         csv_reader = csv.reader(csvfile)
@@ -62,7 +67,7 @@ async def submit(ctx):
 # Define quote output
 @bot.command()
 async def quote(ctx):
-    # Check if empty
+    # Check if empty or non-existent
     if is_file_empty(csv_file):
         await ctx.send("# No quotes have been submitted yet :frowning:\n__You can do that with **.submit [creative quote here]**__")
     # Find random quote and create a embed
