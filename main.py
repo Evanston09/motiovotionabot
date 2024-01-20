@@ -37,8 +37,13 @@ def pick_random(csv_file_path):
     return random.choice(data)
 
 # Retrieves token DO NOT SHARE
-with open("token.txt", "r") as token_file:
-    token = token_file.read().strip()
+try:
+    with open("token.txt", "r") as token_file:
+            token = token_file.read().strip()
+except:
+    print("Add token in token.txt!")
+    quit()
+    
 
 # Sets up intents and the bot
 intents = discord.Intents.default()
@@ -82,4 +87,7 @@ async def quote(ctx):
         await ctx.send(embed=embed)
 
 # Run bot KEEP TOKEN A SECRET
-bot.run(token)
+try:
+    bot.run(token)
+except:
+    print("Invalid token!")
