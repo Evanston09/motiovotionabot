@@ -9,7 +9,6 @@ import csv
 csv_file = 'data.csv'
 command_prefix = '.'
 description = '''
-# Set some global variables
 Howdy, my name is **Motiovotionabot**
 *Quote bot made and hosted by Evan Kim v0.1*
 [Github Repo](https://github.com/Evanston09/motiovotionabot/)
