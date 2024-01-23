@@ -40,15 +40,6 @@ def pick_random(csv_file_path):
     return random.choice(data)
 
 
-def get_values(csv_file_path):
-    values = []
-    with open(csv_file_path, "r") as csvfile:
-        csvreader = csv.reader(csvfile)
-        for row in csvreader:
-            values.append(row)
-    return values
-
-
 # Retrieves token DO NOT SHARE
 try:
     with open("token.txt", "r") as token_file:
@@ -100,18 +91,6 @@ async def quote(ctx):
         embed.add_field(name="Submitted by:", value=author, inline=True)
         embed.add_field(name="Want to submit your own?", value=".submit [your cool quote]", inline=True)
         await ctx.send(embed=embed)
-
-
-# Be able to view database values
-@bot.command()
-async def query(ctx):
-    author = ctx.message.author.mention
-    # Restrain to me
-    if author == admin:
-        values = get_values('data.csv')
-        # This is to try to avoid sending to many characters
-        for value in values:
-            await ctx.send(value)
 
 
 # Run bot KEEP TOKEN A SECRET
