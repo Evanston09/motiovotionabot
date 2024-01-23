@@ -103,11 +103,15 @@ async def quote(ctx):
         await ctx.send(embed=embed)
 
 
+# Be able to view database values
 @bot.command()
 async def query(ctx):
     author = ctx.message.author.mention
     if author == admin:
-        await ctx.send(get_values('data.csv'))
+        values = get_values('data.csv')
+        # This is to try to avoid sending to many characters
+        for value in values:
+            await ctx.send(value)
 
 
 # Run bot KEEP TOKEN A SECRET
