@@ -71,12 +71,11 @@ async def whoareyou(ctx):
 
 # Submission
 @bot.command()
-async def submit(ctx):
+async def submit(ctx, body: str = None):
     # Get quote information
-    body = ctx.message.content[8:]
     author = ctx.message.author.mention
     # Check if empty
-    if len(body) == 0:
+    if not body:
         await ctx.send("You silly goose you didn't submit a quote:man_facepalming:")
         return
     # Store quote
@@ -107,6 +106,7 @@ async def quote(ctx):
 @bot.command()
 async def query(ctx):
     author = ctx.message.author.mention
+    # Restrain to me
     if author == admin:
         values = get_values('data.csv')
         # This is to try to avoid sending to many characters
